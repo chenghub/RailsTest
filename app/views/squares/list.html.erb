@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+  <TITLE>Squares</TITLE>
+</HEAD>
+<script type="text/javascript" src="/assets/packery.pkgd.js"></script>
+<script type="text/javascript" src="/assets/draggabilly.js"></script>
+<script type="text/javascript" src="/assets/swap.js"></script>
+<BODY>
+
+<h1>The Squares</h1>
+<div class="all-slides">
+  <% @squares.each do |square| %>
+    <div class="slide">
+      <div class="slide_title">
+        <table width="100%">
+          <tr>
+            <td width="80%"><p><%= square.name %></p></td>
+            <td>
+              <button onclick="myFunction(this)" class="dropbtn">
+                <div id="myDropdown" class="dropdown-content">
+                  <%= link_to 'Remove Square', controller: 'squares', action: 'destroy', id: square.id, method: :delete %>
+                </div>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <%= image_tag("#{square.name}.png") %>
+      <div class="color1" style="background-color: <%=square.color%>;">
+        <div class="vertical-align"><a href="<%= square.link %>"><%= square.description %></a></div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="cloned-slides" id="cloned-slides"></div>
+
+</BODY>
+</HTML>
